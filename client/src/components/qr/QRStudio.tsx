@@ -9,6 +9,7 @@ import CustomizationPanel from "./CustomizationPanel";
 import ExportActions from "./ExportActions";
 import { DEFAULT_STYLE_SETTINGS, QRRecord, QRStyleSettings } from "./types";
 import { generateShortId } from "@/lib/utils";
+import { SITE_URL } from "@/lib/site";
 
 interface QRStudioProps {
   initial?: QRRecord;
@@ -23,7 +24,9 @@ export default function QRStudio({ initial }: QRStudioProps) {
   const [settings, setSettings] = useState<QRStyleSettings>(
     initial?.styleSettings ?? DEFAULT_STYLE_SETTINGS
   );
-  const [origin] = useState(() => (typeof window !== "undefined" ? window.location.origin : ""));
+  const [origin] = useState(() =>
+    typeof window !== "undefined" ? window.location.origin : SITE_URL
+  );
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
